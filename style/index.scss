@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+}
+* {
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+button {
+  cursor: pointer;
+  transition: opacity .3s;
+  &:hover {
+    opacity: .9;
+  }
+}
+.container {
+  height: 100%;
+  padding: 10px;
+  .img-box {
+    padding-left: 50px;
+  }
+  .flex-box {
+    display: flex;
+  }
+  .draw-btn {
+    width: 120px;
+    height: 32px;
+    outline: 0;
+    border: none;
+    color: #fff;
+    background: #2589ff;
+    border-radius: 4px;
+  }
+}
