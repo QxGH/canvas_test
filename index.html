@@ -37,6 +37,7 @@
           drawImage()
         }
       };
+
       let avatarW = 0, avatarH = 0;
       let avatar = new Image();
       avatar.src = './images/avatar.png';
@@ -191,35 +192,68 @@
         ctx.fillStyle = '#fbc2eb';
         ctx.fillRect(10, 10, 100, 60);
         ctx.fillStyle = 'red';
-        ctx.beginPath();
-        ctx.arc(0, 0, 1, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(10, 0, 1, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(10, 10, 1, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(20, 0, 1, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(20, 20, 1, 0, 2*Math.PI);
-        ctx.fill();
+        let dotList = [
+          {x: 0, y: 0 },
+          {x: 10, y: 0 },
+          {x: 10, y: 10 },
+          {x: 20, y: 0 },
+          {x: 20, y: 20 }
+        ];
+        fillDot(dotList);
         ctx.fillStyle = '#2589ff';
         ctx.scale(2,2);
         ctx.globalAlpha = 0.6;
         ctx.fillRect(10, 10, 100, 60);
         ctx.restore();
 
-      }
+        // 动画
+        setInterval(() => {
+          rotate()
+        }, 60);
+      };
+
+      let speed = 1, rotateDeg = 0;
+      function rotate() {
+        ctx.save();
+        ctx.translate(500, 370);
+        ctx.clearRect(-21, -21, 142, 142);
+        ctx.fillStyle = 'red';
+        let dotList_ = [
+          {x: 0, y: 0 },
+          {x: 100, y: 0 },
+          {x: -21, y: 50 },
+          {x: 50, y: -21 },
+          {x: 100, y: 100 },
+          {x: 121, y: 50 },
+          {x: 50, y: 121 },
+          {x: 0, y: 100 }
+        ];
+        fillDot(dotList_);
+        ctx.restore();
+
+        ctx.save();
+        ctx.translate(550, 420);
+        ctx.rotate(rotateDeg*Math.PI/180);
+        ctx.drawImage(avatar, 0, 0, avatarW, avatarH, -50, -50, 100, 100);
+        rotateDeg += speed;
+        ctx.restore();
+      };
+
+      function fillDot(list) {
+        for(let item of list) {
+          ctx.beginPath();
+          ctx.arc(item.x, item.y, 1, 0, 2*Math.PI);
+          ctx.closePath();
+          ctx.fill();
+        }
+      };
 
     };
 
     function drawHandle() {
       // 转图片
       let bolb = myCanvas.toDataURL("image/png");
-      console.log("drawImage -> bolb", bolb);
+      // console.log("drawImage -> bolb", bolb);
       document.getElementById('canvasImg').src = bolb;
     }
   </script>
