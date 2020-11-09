@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Canvas</title>
   <link rel="stylesheet" href="./style/index.min.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
         progress++;
         imgW = e.target.width, imgH = e.target.height; // 70*70
         if(progress == 2) {
-          drawImage()
+          drawCanvas()
         }
       };
 
@@ -46,11 +46,11 @@
         progress++;
         avatarW = e.target.width, avatarH = e.target.height; // 70*70
         if(progress == 2) {
-          drawImage()
+          drawCanvas()
         }
       };
 
-      function drawImage() {
+      function drawCanvas() {
         // 填充
         ctx.fillStyle = '#eee';
         ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
